@@ -1,2 +1,54 @@
-name: tempartifact
+name: football
 version: v0.0
+validation_envs:
+  - tiny
+envs:
+  complete: {}
+  old_top:
+    params:
+      valuations:
+        match_fraction: 0.8
+        value_fraction: 0.1
+        season_sample:
+        - GB1-2013
+        - GB1-2014
+        - IT1-2015
+        - ES1-2014
+  tiny:
+    params:
+      valuations:
+        match_fraction: 0.2
+        value_fraction: 0.05
+        season_sample:
+        - GB1-2014
+  top5recent:
+    params:
+      valuations:
+        match_fraction: 1
+        value_fraction: 1
+        season_sample:
+        - GB1-2016
+        - GB1-2017
+        - GB1-2018
+        - GB1-2019
+        - GB1-2020
+        - IT1-2016
+        - IT1-2017
+        - IT1-2018
+        - IT1-2019
+        - IT1-2020
+        - L1-2016
+        - L1-2017
+        - L1-2018
+        - L1-2019
+        - L1-2020
+        - ES1-2016
+        - ES1-2017
+        - ES1-2018
+        - ES1-2019
+        - ES1-2020
+        - FR1-2016
+        - FR1-2017
+        - FR1-2018
+        - FR1-2019
+        - FR1-2020

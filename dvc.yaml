@@ -1,0 +1,44 @@
+stages:
+  old_top-valuations:
+    cmd: datazimmer run-step old_top-valuations
+    deps:
+    - data/football/valuations/complete
+    - src/valuations.py
+    params:
+    - zimmer.yaml:
+      - envs.old_top.params.valuations.match_fraction
+      - envs.old_top.params.valuations.season_sample
+      - envs.old_top.params.valuations.value_fraction
+    outs:
+    - data/football/valuations/old_top
+  tiny-valuations:
+    cmd: datazimmer run-step tiny-valuations
+    deps:
+    - data/football/valuations/complete
+    - src/valuations.py
+    params:
+    - zimmer.yaml:
+      - envs.tiny.params.valuations.match_fraction
+      - envs.tiny.params.valuations.season_sample
+      - envs.tiny.params.valuations.value_fraction
+    outs:
+    - data/football/valuations/tiny
+  top5recent-valuations:
+    cmd: datazimmer run-step top5recent-valuations
+    deps:
+    - data/football/valuations/complete
+    - src/valuations.py
+    params:
+    - zimmer.yaml:
+      - envs.top5recent.params.valuations.match_fraction
+      - envs.top5recent.params.valuations.season_sample
+      - envs.top5recent.params.valuations.value_fraction
+    outs:
+    - data/football/valuations/top5recent
+  complete-valuations:
+    cmd: datazimmer run-step complete-valuations
+    deps:
+    - src/valuations.py
+    outs:
+    - data/football/valuations/complete:
+        persist: true

@@ -1,0 +1,103 @@
+schema: '2.0'
+stages:
+  complete-valuations:
+    cmd: datazimmer run-step complete-valuations
+    deps:
+    - path: src/valuations.py
+      md5: 6b19f13dfafdfd4914ea351388947418
+      size: 10743
+    outs:
+    - path: data/football/valuations/complete
+      md5: d368ae8a80750254896ac7c587c4ba5f.dir
+      size: 31797193
+      nfiles: 12
+  top5recent-valuations:
+    cmd: datazimmer run-step top5recent-valuations
+    deps:
+    - path: data/football/valuations/complete
+      md5: d368ae8a80750254896ac7c587c4ba5f.dir
+      size: 31797193
+      nfiles: 12
+    - path: src/valuations.py
+      md5: 6b19f13dfafdfd4914ea351388947418
+      size: 10743
+    params:
+      zimmer.yaml:
+        envs.top5recent.params.valuations.match_fraction: 1
+        envs.top5recent.params.valuations.season_sample:
+        - GB1-2016
+        - GB1-2017
+        - GB1-2018
+        - GB1-2019
+        - GB1-2020
+        - IT1-2016
+        - IT1-2017
+        - IT1-2018
+        - IT1-2019
+        - IT1-2020
+        - L1-2016
+        - L1-2017
+        - L1-2018
+        - L1-2019
+        - L1-2020
+        - ES1-2016
+        - ES1-2017
+        - ES1-2018
+        - ES1-2019
+        - ES1-2020
+        - FR1-2016
+        - FR1-2017
+        - FR1-2018
+        - FR1-2019
+        - FR1-2020
+        envs.top5recent.params.valuations.value_fraction: 1
+    outs:
+    - path: data/football/valuations/top5recent
+      md5: 4d1a74a80a2aa65d4f1b38eaf9a5460e.dir
+      size: 3835306
+      nfiles: 12
+  tiny-valuations:
+    cmd: datazimmer run-step tiny-valuations
+    deps:
+    - path: data/football/valuations/complete
+      md5: d368ae8a80750254896ac7c587c4ba5f.dir
+      size: 31797193
+      nfiles: 12
+    - path: src/valuations.py
+      md5: 6b19f13dfafdfd4914ea351388947418
+      size: 10743
+    params:
+      zimmer.yaml:
+        envs.tiny.params.valuations.match_fraction: 0.2
+        envs.tiny.params.valuations.season_sample:
+        - GB1-2014
+        envs.tiny.params.valuations.value_fraction: 0.05
+    outs:
+    - path: data/football/valuations/tiny
+      md5: 835ba9f1153a613a60f91cd289eea1ce.dir
+      size: 119900
+      nfiles: 12
+  old_top-valuations:
+    cmd: datazimmer run-step old_top-valuations
+    deps:
+    - path: data/football/valuations/complete
+      md5: d368ae8a80750254896ac7c587c4ba5f.dir
+      size: 31797193
+      nfiles: 12
+    - path: src/valuations.py
+      md5: 6b19f13dfafdfd4914ea351388947418
+      size: 10743
+    params:
+      zimmer.yaml:
+        envs.old_top.params.valuations.match_fraction: 0.8
+        envs.old_top.params.valuations.season_sample:
+        - GB1-2013
+        - GB1-2014
+        - IT1-2015
+        - ES1-2014
+        envs.old_top.params.valuations.value_fraction: 0.1
+    outs:
+    - path: data/football/valuations/old_top
+      md5: 3d31f3e85a81cfe8afaf7c1b84168b4b.dir
+      size: 477634
+      nfiles: 12
